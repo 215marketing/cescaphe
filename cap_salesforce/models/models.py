@@ -20,8 +20,10 @@ class cap_salesforce(models.Model):
             'password': 'ce5caphe2',
         }
         r = requests.post(url,data=data)
-        if r.access_token :
-            token = r.access_token
+        _logger.error(r.text)
+        responseData = json.loads(r.text)
+        if responseData.access_token :
+            token = responseData.access_token
         else :
             _logger.error("Connection failed")
             

@@ -5,6 +5,7 @@ import requests
 
 class cap_salesforce(models.Model):
     _name = 'cap_salesforce.cap_salesforce'
+    _description = "Salesforce Synchronization"
     
     @api.model
     def connect_to_salesforce(self)

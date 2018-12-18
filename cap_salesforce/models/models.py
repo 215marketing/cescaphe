@@ -8,7 +8,7 @@ class cap_salesforce(models.Model):
     _description = "Salesforce Synchronization"
     
     @api.model
-    def connect_to_salesforce(self)
+    def connect_to_salesforce(self):
     #Get token from Salesforce
         url = 'https://login.salesforce.com/services/oauth2/'
         #headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
@@ -29,7 +29,7 @@ class cap_salesforce(models.Model):
     
     #sobjects : Contact / Account / Lead / Tasks
     @api.model
-    def push_to_salesforce(self,token,sobjects,data)
+    def push_to_salesforce(self,token,sobjects,data):
         url = 'https://na73.salesforce.com/services/data/v42.0/sobjects/'+sobjects
         headers = {'content-type': 'application/json', 'Authorization:': 'Bearer '+token }
         
@@ -43,7 +43,7 @@ class cap_salesforce(models.Model):
     
     #sobjects : Contact / Account / Lead / Tasks
     @api.model
-    def get_to_salesforce(self,token,sobjects,id)
+    def get_to_salesforce(self,token,sobjects,id):
         url = 'https://na73.salesforce.com/services/data/v20.0/sobjects/'+sobjects+'/'+id
         headers = {'content-type': 'application/json', 'Authorization:': 'Bearer '+token }
         

@@ -19,7 +19,7 @@ class cap_salesforce(models.Model):
             'username': 'alex.kravets@cescaphe.com',
             'password': 'ce5caphe2',
         }
-        r = requests.post(url,headers=headers,data=data)
+        r = requests.post(url,data=data)
         if r.access_token :
             token = r.access_token
         else :
@@ -47,7 +47,7 @@ class cap_salesforce(models.Model):
         url = 'https://na73.salesforce.com/services/data/v20.0/sobjects/'+sobjects+'/'+id
         headers = {'content-type': 'application/json', 'Authorization:': 'Bearer '+token }
         
-        r = requests.post(url,headers=headers,data=data)
+        r = requests.get(url,headers=headers)
         if r :
             record = r
         else :

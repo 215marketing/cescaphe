@@ -59,9 +59,25 @@ class cap_salesforce(models.Model):
         r = requests.get(url,headers=headers)
         _logger.error(r.text)
         responseData = json.loads(r.text)
+        print (responseData)
         if 'error' in responseData:
             _logger.error("[cap_Salesforce] Salesforce push data failed : "+responseData['errors'])
             
             
         return record
+    
+    #sobjects : Contact / Account / Lead / Tasks
+    @api.model
+    def describe_object_salesforce(self,token,sobjects,id):
+        url = 'https://na73.salesforce.com/services/data/v20.0/sobjects/'+sobjects+'/describe/'
+        headers = {'content-type': 'application/json', 'Authorization:': 'Bearer '+token }
+        
+        r = requests.get(url,headers=headers)
+        _logger.error(r.text)
+        responseData = json.loads(r.text)
+        print (responseData)
+        if 'error' in responseData:
+            _logger.error("[cap_Salesforce] Salesforce dscribe object failed : "+responseData['errors'])
+            
+        return True
     

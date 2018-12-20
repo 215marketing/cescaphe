@@ -21,7 +21,7 @@ class cap_salesforce(models.Model):
             'grant_type': 'password',
             'client_id': '3MVG9g9rbsTkKnAXkruajj1p10vh7Rj0WNM6QyQ9aEhAxWxvjBCR3W.N8By4BJOlKm3bskH4PJWzEwp1WiLLg',
             'client_secret': '7037194655269788417',
-            'username': 'alex.kravets@cescaphe.com',
+            'username': 'kerri.shields1@cescaphe.com',
             'password': 'ce5caphe2',
         }
         r = requests.post(url,data=data)
@@ -31,6 +31,7 @@ class cap_salesforce(models.Model):
             _logger.error("[cap_Salesforce] Connection failed")
         elif 'access_token' in responseData :
             token = responseData.access_token
+            _logger.error(token)
             
         return token
     
@@ -55,10 +56,13 @@ class cap_salesforce(models.Model):
         headers = {'content-type': 'application/json', 'Authorization:': 'Bearer '+token }
         
         r = requests.get(url,headers=headers)
-        if r :
-            record = r
-        else :
-            _logger.error("Salesforce push data failed : "+r.errors)
+        _logger.error(r.text)
+        responseData = json.loads(r.text)
+        if 'error' in responseData:
+            _logger.error("[cap_Salesforce] Salesforce push data failed : "+responseData.errors)
+        elif 'success' in responseData :
+            
+            
             
         return record
     

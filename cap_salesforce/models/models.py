@@ -15,6 +15,7 @@ class cap_salesforce(models.Model):
     def connect_to_salesforce(self):
     #Get token from Salesforce
         url = 'https://login.salesforce.com/services/oauth2/token'
+        token = None
         #headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
         data = {
             'grant_type': 'password',
@@ -26,10 +27,10 @@ class cap_salesforce(models.Model):
         r = requests.post(url,data=data)
         _logger.error(r.text)
         responseData = json.loads(r.text)
-        if responseData.access_token :
+        if 'error' in responseData:
+            _logger.error("[cap_Salesforce] Connection failed")
+        elif 'access_token' in responseData :
             token = responseData.access_token
-        else :
-            _logger.error("Connection failed")
             
         return token
     

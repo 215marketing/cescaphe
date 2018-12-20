@@ -2,6 +2,9 @@
 
 from odoo import models, fields, api
 import requests
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class cap_salesforce(models.Model):
     _name = 'cap_salesforce.cap_salesforce'

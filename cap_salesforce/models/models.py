@@ -60,8 +60,6 @@ class cap_salesforce(models.Model):
         responseData = json.loads(r.text)
         if 'error' in responseData:
             _logger.error("[cap_Salesforce] Salesforce push data failed : "+responseData.errors)
-        elif 'success' in responseData :
-            
             
             
         return record

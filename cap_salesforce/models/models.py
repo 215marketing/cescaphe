@@ -27,10 +27,11 @@ class cap_salesforce(models.Model):
         r = requests.post(url,data=data)
         _logger.error(r.text)
         responseData = json.loads(r.text)
+        print (responseData)
         if 'error' in responseData:
             _logger.error("[cap_Salesforce] Connection failed")
         elif 'access_token' in responseData :
-            token = responseData.access_token
+            token = responseData['access_token']
             _logger.error(token)
             
         return token
@@ -59,7 +60,7 @@ class cap_salesforce(models.Model):
         _logger.error(r.text)
         responseData = json.loads(r.text)
         if 'error' in responseData:
-            _logger.error("[cap_Salesforce] Salesforce push data failed : "+responseData.errors)
+            _logger.error("[cap_Salesforce] Salesforce push data failed : "+responseData['errors'])
             
             
         return record

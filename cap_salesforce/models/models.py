@@ -3,6 +3,7 @@
 from odoo import models, fields, api
 import requests
 import logging
+import json
 
 _logger = logging.getLogger(__name__)
 
@@ -13,7 +14,7 @@ class cap_salesforce(models.Model):
     @api.model
     def connect_to_salesforce(self):
     #Get token from Salesforce
-        url = 'https://login.salesforce.com/services/oauth2/'
+        url = 'https://login.salesforce.com/services/oauth2/token'
         #headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
         data = {
             'grant_type': 'password',

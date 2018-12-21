@@ -68,7 +68,7 @@ class cap_salesforce(models.Model):
         print (responseData)
         if 'error' in responseData:
             _logger.error("[cap_Salesforce] Salesforce get data failed : "+responseData['errors'])
-        elif :
+        else :
             record = responseData
             
         return record

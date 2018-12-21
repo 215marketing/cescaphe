@@ -43,7 +43,8 @@ class cap_salesforce(models.Model):
         url = 'https://na73.salesforce.com/services/data/v42.0/sobjects/'+sobjects
         headers = {'content-type': 'application/json', 'Authorization': 'Bearer '+token }
         
-        r = requests.post(url,headers=headers,data=data)
+        json_data = json.dumps(data)
+        r = requests.post(url,headers=headers,data=json_data)
         _logger.error(r.text)
         responseData = json.loads(r.text)
         print (responseData)

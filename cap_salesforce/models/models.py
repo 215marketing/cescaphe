@@ -39,14 +39,18 @@ class cap_salesforce(models.Model):
     #sobjects : Contact / Account / Lead / Tasks
     @api.model
     def push_to_salesforce(self,token,sobjects,data):
+        id = None
         url = 'https://na73.salesforce.com/services/data/v42.0/sobjects/'+sobjects
-        headers = {'content-type': 'application/json', 'Authorization:': 'Bearer '+token }
+        headers = {'content-type': 'application/json', 'Authorization': 'Bearer '+token }
         
         r = requests.post(url,headers=headers,data=data)
-        if r.success :
-            id = r.id
-        else :
-            _logger.error("Salesforce push data failed : "+r.errors)
+        _logger.error(r.text)
+        responseData = json.loads(r.text)
+        print (responseData)
+        if 'error' in responseData:
+            _logger.error("[cap_Salesforce] Salesforce push data failed : "+responseData['errors'])
+        elif 'success' in responseData :
+            id = responseData['id']
             
         return id
     
@@ -54,23 +58,23 @@ class cap_salesforce(models.Model):
     @api.model
     def get_to_salesforce(self,token,sobjects,id):
         url = 'https://na73.salesforce.com/services/data/v20.0/sobjects/'+sobjects+'/'+id
-        headers = {'content-type': 'application/json', 'Authorization:': 'Bearer '+token }
+        headers = {'content-type': 'application/json', 'Authorization': 'Bearer '+token }
         
         r = requests.get(url,headers=headers)
         _logger.error(r.text)
         responseData = json.loads(r.text)
         print (responseData)
         if 'error' in responseData:
-            _logger.error("[cap_Salesforce] Salesforce push data failed : "+responseData['errors'])
+            _logger.error("[cap_Salesforce] Salesforce get data failed : "+responseData['errors'])
             
             
-        return record
+        return True
     
     #sobjects : Contact / Account / Lead / Tasks
     @api.model
-    def describe_object_salesforce(self,token,sobjects,id):
+    def describe_object_salesforce(self,token,sobjects):
         url = 'https://na73.salesforce.com/services/data/v20.0/sobjects/'+sobjects+'/describe/'
-        headers = {'content-type': 'application/json', 'Authorization:': 'Bearer '+token }
+        headers = {'content-type': 'application/json', 'Authorization': 'Bearer '+token }
         
         r = requests.get(url,headers=headers)
         _logger.error(r.text)

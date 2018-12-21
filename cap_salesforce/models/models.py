@@ -58,6 +58,7 @@ class cap_salesforce(models.Model):
     #sobjects : Contact / Account / Lead / Tasks
     @api.model
     def get_to_salesforce(self,token,sobjects,id):
+        record = None
         url = 'https://na73.salesforce.com/services/data/v20.0/sobjects/'+sobjects+'/'+id
         headers = {'content-type': 'application/json', 'Authorization': 'Bearer '+token }
         
@@ -67,9 +68,10 @@ class cap_salesforce(models.Model):
         print (responseData)
         if 'error' in responseData:
             _logger.error("[cap_Salesforce] Salesforce get data failed : "+responseData['errors'])
+        elif :
+            record = responseData
             
-            
-        return True
+        return record
     
     #sobjects : Contact / Account / Lead / Tasks
     @api.model

@@ -57,7 +57,6 @@ class cap_salesforce(models.Model):
     
     @api.model
     def update_to_salesforce(self,token,sobjects,id,data):
-        id = None
         url = 'https://na73.salesforce.com/services/data/v42.0/sobjects/'+sobjects+'/'+id
         headers = {'content-type': 'application/json', 'Authorization': 'Bearer '+token }
         

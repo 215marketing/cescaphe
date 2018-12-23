@@ -81,15 +81,8 @@ class cap_salesforce(models.Model):
         headers = {'content-type': 'application/json', 'Authorization': 'Bearer '+token }
         
         r = requests.get(url,headers=headers)
-        _logger.error(r.text)
-        responseData = json.loads(r.text)
-        print (responseData)
-        if 'error' in responseData:
-            _logger.error("[cap_Salesforce] Salesforce get data failed : "+responseData['errors'])
-        else :
-            record = responseData
-            
-        return record
+                   
+        return ""
     
     #sobjects : Contact / Account / Lead / Tasks
     @api.model

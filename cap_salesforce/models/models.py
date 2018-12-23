@@ -62,14 +62,7 @@ class cap_salesforce(models.Model):
         
         json_data = json.dumps(data)
         r = requests.patch(url,headers=headers,data=json_data)
-        _logger.error(r.text)
-        responseData = json.loads(r.text)
-        print (responseData)
-        if 'error' in responseData:
-            _logger.error("[cap_Salesforce] Salesforce push data failed : "+responseData['errors'])
-        elif 'success' in responseData :
-            id = responseData['id']
-            
+           
         return id
     
     
@@ -81,8 +74,15 @@ class cap_salesforce(models.Model):
         headers = {'content-type': 'application/json', 'Authorization': 'Bearer '+token }
         
         r = requests.get(url,headers=headers)
-                   
-        return ""
+        _logger.error(r.text)
+        responseData = json.loads(r.text)
+        print (responseData)
+        if 'error' in responseData:
+            _logger.error("[cap_Salesforce] Salesforce get data failed : "+responseData['errors'])
+        else :
+            record = responseData
+            
+        return record
     
     #sobjects : Contact / Account / Lead / Tasks
     @api.model

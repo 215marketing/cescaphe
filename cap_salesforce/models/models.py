@@ -55,6 +55,25 @@ class cap_salesforce(models.Model):
             
         return id
     
+    @api.model
+    def update_to_salesforce(self,token,sobjects,id,data):
+        id = None
+        url = 'https://na73.salesforce.com/services/data/v42.0/sobjects/'+sobjects+'/'+id
+        headers = {'content-type': 'application/json', 'Authorization': 'Bearer '+token }
+        
+        json_data = json.dumps(data)
+        r = requests.patch(url,headers=headers,data=json_data)
+        _logger.error(r.text)
+        responseData = json.loads(r.text)
+        print (responseData)
+        if 'error' in responseData:
+            _logger.error("[cap_Salesforce] Salesforce push data failed : "+responseData['errors'])
+        elif 'success' in responseData :
+            id = responseData['id']
+            
+        return id
+    
+    
     #sobjects : Contact / Account / Lead / Tasks
     @api.model
     def get_to_salesforce(self,token,sobjects,id):

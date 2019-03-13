@@ -21,8 +21,8 @@ class cap_salesforce(models.Model):
             'grant_type': 'password',
             'client_id': '3MVG9g9rbsTkKnAXkruajj1p10vh7Rj0WNM6QyQ9aEhAxWxvjBCR3W.N8By4BJOlKm3bskH4PJWzEwp1WiLLg',
             'client_secret': '7037194655269788417',
-            'username': 'kerri.shields1@cescaphe.com',
-            'password': 'ce5caphe2',
+            'username': 'kerri.shields2@cescaphe.com',
+            'password': 'ce5caphe9',
         }
         r = requests.post(url,data=data)
         _logger.error(r.text)

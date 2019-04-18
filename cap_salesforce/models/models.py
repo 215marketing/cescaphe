@@ -32,9 +32,7 @@ class cap_salesforce(models.Model):
             _logger.error("[cap_Salesforce] Connection failed")
         elif 'access_token' in responseData :
             token = responseData['access_token']
-            _logger.error(token)
-            _logger.error("[cap_Salesforce] Calling Token : "+token)
-            
+            _logger.error(token)        
             
         return token
     
@@ -54,6 +52,8 @@ class cap_salesforce(models.Model):
             _logger.error("[cap_Salesforce] Salesforce push data failed : "+responseData['errors'])
         elif 'success' in responseData :
             id = responseData['id']
+            _logger.error("[cap_Salesforce] Successfull Update")
+
             
         return id
     

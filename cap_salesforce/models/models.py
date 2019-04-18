@@ -26,6 +26,9 @@ class cap_salesforce(models.Model):
         }
         r = requests.post(url,data=data)
         _logger.error(r.text)
+        print(r.text)
+        print(r)
+
         responseData = json.loads(r.text)
         print (responseData)
         if 'error' in responseData:

@@ -33,6 +33,8 @@ class cap_salesforce(models.Model):
         elif 'access_token' in responseData :
             token = responseData['access_token']
             _logger.error(token)
+            _logger.error("[cap_Salesforce] Calling Token : "+token)
+            
             
         return token
     

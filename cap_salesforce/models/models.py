@@ -27,6 +27,7 @@ class cap_salesforce(models.Model):
         r = requests.post(url,data=data)
         _logger.error(r.text)
         responseData = json.loads(r.text)
+        print (r.text)
         print (responseData)
         if 'error' in responseData:
             _logger.error("[cap_Salesforce] Connection failed")

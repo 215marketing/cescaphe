@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from openerp import http
-from openerp.http import request
-from openerp.addons.web.controllers.main import serialize_exception,content_disposition
+from odoo import http
+from odoo.http import request
+from odoo.addons.web.controllers.main import serialize_exception,content_disposition
 import base64, os, inspect, logging
 
 _logger = logging.getLogger()

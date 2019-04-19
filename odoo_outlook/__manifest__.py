@@ -10,8 +10,6 @@
         The Outlook add-in allows the user to connect Odoo and Outlook. Synchronisation is bi-directional and the user may decide which direction to prioritize (Odoo or Outlook)
     """,
 
-    'author': "Atteli - Juliusz Sosinowicz",
-    'website': "http://atteli.com",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml

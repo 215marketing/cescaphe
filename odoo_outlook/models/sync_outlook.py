@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
-
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 
 class outlook_sync(models.Model):
     _name = 'odoo_outlook.outlook_sync'
-    
+
     def _server(self):
         return self.env['ir.config_parameter'].get_param('web.base.url')
     server = fields.Char(readonly=True, default=_server)
-    
+
     def _database(self):
         return self.env.cr.dbname
     database = fields.Char(readonly=True, default=_database)
-    
+
     @api.multi
     def download_outlook(self):
         return {
@@ -21,4 +21,3 @@ class outlook_sync(models.Model):
             'url': '/web/binary/download_outlook_add_in',
             'target': 'self',
         }
-

@@ -66,17 +66,7 @@ class cap_salesforce(models.Model):
         headers = {'content-type': 'application/json', 'Authorization': 'Bearer '+token }
         
         json_data = json.dumps(data)
-        r = requests.patch(url,headers=headers,data=json_data)
-
-        _logger.error(r.text)
-        responseData = json.loads(r.text)
-        print (responseData)
-        if 'error' in responseData:
-            _logger.error("[cap_Salesforce] Salesforce push data failed : "+responseData['errors'])
-        elif 'success' in responseData :
-            id = responseData['id']
-            _logger.error("[cap_Salesforce] Successfull Update")
-        
+        r = requests.patch(url,headers=headers,data=json_data)        
             
         return id
     

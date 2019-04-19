@@ -1,4 +1,4 @@
-<openerp>
+<odoo>
     <data>
         <record model="ir.ui.view" id="outlook_sync_form">
             <field name="name">outlook_sync_form</field>
@@ -45,4 +45,4 @@
         <menuitem id="sync_top_menu" name="Synchronize" sequence="1000" action="outlook_sync_action"/>
         <!--<menuitem id="outlook_side_menu" name="Synchronize with Outlook" sequence="1000" parent="sync_top_menu"/>-->
     </data>
-</openerp>
+</odoo>

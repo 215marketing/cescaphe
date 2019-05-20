@@ -33,6 +33,7 @@ child_all_count: child_all_count field, count of direct and indirect children.
     'images': ['static/description/banner.gif'],
     'data': [
         'views/hr_department_views.xml',
+        'views/contacts_views.xml',
     ],
     'demo': [
     ],
